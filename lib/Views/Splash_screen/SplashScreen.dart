@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Views/auth_screen/login.dart';
 import 'package:flutter_application_1/widgets_common/splash_logo.dart';
 import 'package:get/get.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+import '../home_screen/homeScreen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -11,18 +14,26 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  User? user = FirebaseAuth.instance.currentUser;
 
-   splashsc(){
-    Future.delayed(const Duration(seconds: 3),(){
-      Get.to(()=>  login());
-    });
-   }
-@override
-void initState() {
-  splashsc();
+  splashsc() {
+    if (user != null) {
+      Future.delayed(const Duration(seconds: 3), () {
+        Get.to(() => HomeScreen());
+      });
+    } else {
+      Future.delayed(const Duration(seconds: 3), () {
+        Get.to(() => login());
+      });
+    }
+  }
+
+  @override
+  void initState() {
+    splashsc();
     super.initState();
   }
-   
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

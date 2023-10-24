@@ -38,6 +38,8 @@ dependencies:
   cloud_firestore: ^4.9.2
   velocity_x: ^4.1.1
   image_picker: ^1.0.4
+  firebase_messaging: ^14.7.1
+  http: ^1.1.0
 
 dev_dependencies:
   # The "flutter_lints" package below contains a set of recommended lints to
